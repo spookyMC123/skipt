@@ -44,14 +44,15 @@ case $choice in
         ;;
     0)
         echo -e "\n${GREEN}${EMOJI_BACK} Returning to main panel installer...${RESET}"
-        bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/installer.sh)
+        bash <(curl -fsSL "https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/installer.sh)
         ;;
     *)
-        echo -e "\n${RED}${EMOJI_WARN} Invalid choice! Please run the script again.${RESET}"
+        echo -e "\n${RED}${EMOJI_WARN} Invalid choice! Please try again.${RESET}"
         sleep 2
-        bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/puffer%20panel/installpuffer.sh)
+        exec bash $0
         ;;
 esac
 
 echo -e "\n${GREEN}${EMOJI_CHECK} PufferPanel installation process completed successfully!${RESET}"
+
 
