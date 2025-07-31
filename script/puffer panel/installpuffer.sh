@@ -1,46 +1,57 @@
 #!/bin/bash
 
-# Define colors
+# Define colors and styles
 GREEN="\e[32m"
 YELLOW="\e[33m"
 CYAN="\e[36m"
 RED="\e[31m"
 RESET="\e[0m"
+BOLD="\e[1m"
 
-# Clear the terminal
+# Emojis
+EMOJI_PANEL="🛠️"
+EMOJI_BACK="🔙"
+EMOJI_CHECK="✅"
+EMOJI_WARN="⚠️"
+
+# Clear screen
 clear
 
-# Display Installer Name
-echo -e "${GREEN}==============================${RESET}"
-echo -e "${GREEN}         puffer-panel         ${RESET}"
-echo -e "${GREEN}==============================${RESET}"
+# Header
+echo -e "${GREEN}${BOLD}==============================${RESET}"
+echo -e "${GREEN}${BOLD}         PufferPanel          ${RESET}"
+echo -e "${GREEN}${BOLD}==============================${RESET}\n"
 
 # Menu options
-echo -e "${YELLOW}Select an option:${RESET}"
-echo "1) Install pufferpanel on github"
-echo "2) Install pufferpanel on all vps and codesandbox"
-echo "0) Back to installer"
-echo -n "Enter your choice: "
+echo -e "${YELLOW}${BOLD}Select an option:${RESET}"
+echo -e "1) ${EMOJI_PANEL} Install PufferPanel on GitHub"
+echo -e "2) ${EMOJI_PANEL} Install PufferPanel on VPS and Codesandbox"
+echo -e "0) ${EMOJI_BACK} Back to main installer\n"
+
+# Prompt user input
+echo -ne "${CYAN}${BOLD}Enter your choice: ${RESET}"
 read -r choice
 
-# Run the selected installation script
+# Handle user choice
 case $choice in
     1)
-        echo -e "${GREEN}Installing github pufferPanel...${RESET}"
+        echo -e "\n${GREEN}${EMOJI_CHECK} Installing GitHub PufferPanel...${RESET}"
         bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/script/puffer%20panel/git-install.sh)
         ;;
     2)
-        echo -e "${GREEN}Installing vps pufferpanel...${RESET}"
+        echo -e "\n${GREEN}${EMOJI_CHECK} Installing VPS and Codesandbox PufferPanel...${RESET}"
         bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/script/puffer%20panel/codesandboxvpspufferpanelinstall.sh)
         ;;
     0)
-        echo -e "${GREEN}backing to panel-installer...${RESET}"
+        echo -e "\n${GREEN}${EMOJI_BACK} Returning to main panel installer...${RESET}"
         bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/installer.sh)
         ;;
     *)
-        echo -e "${RED}Invalid choice! Please run the script again.${RESET}"
-        exit 1
+        echo -e "\n${RED}${EMOJI_WARN} Invalid choice! Please run the script again.${RESET}"
+        sleep 2
+        bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/puffer%20panel/installpuffer.sh)
         ;;
 esac
 
-echo -e "${GREEN}puffer panel process completed successfully!${RESET}"
+echo -e "\n${GREEN}${EMOJI_CHECK} PufferPanel installation process completed successfully!${RESET}"
+
