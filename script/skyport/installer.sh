@@ -68,7 +68,7 @@ case $choice in
       bash <(curl -fsSL https://raw.githubusercontent.com/spookyMC123/Skyport-installer/refs/heads/main/scripts/node.sh)
     else
       echo -e "\n${RED}${EMOJI_CANCEL} Installation cancelled by user.${RESET}"
-      bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/script/skyport/install.sh)
+      bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/skyport/installer.sh)
     fi
     ;;
   4)
