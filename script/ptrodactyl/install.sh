@@ -46,16 +46,20 @@ case "$choice" in
     echo -e "\n${GREEN}${EMOJI_START} Installing Pterodactyl (with IPv4 + Wings)...${RESET}"
     sleep 1
     bash <(curl -s https://pterodactyl-installer.se/) || {
-      echo -e "${RED}${EMOJI_ERROR} Installation failed. Please check your network or try again.${RESET}"
-      exit 1
+    echo -e "${RED}${EMOJI_ERROR} Installation failed. Please check your network or try again.${RESET}"
+    sleep 2
+    echo -e "\n${RED}${EMOJI_ERROR}Backing${RESET}"
+    bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/ptrodactyl/install.sh)
     }
     ;;
   2)
     echo -e "\n${GREEN}${EMOJI_START} Installing Pterodactyl 2 (GitHub version)...${RESET}"
     sleep 1
     bash <(curl -fsSL https://raw.githubusercontent.com/spookyMC123/pterodactylpaneleasyinstall/main/ptero.se) || {
-      echo -e "${RED}${EMOJI_ERROR} Installation failed. Please check your connection or script source.${RESET}"
-      exit 1
+    echo -e "${RED}${EMOJI_ERROR} Installation failed. Please check your connection or script source.${RESET}"
+    sleep 2
+    echo -e "\n${RED}${EMOJI_ERROR}Backing${RESET}"
+    bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/ptrodactyl/install.sh)
     }
     ;;
   0)
@@ -67,8 +71,7 @@ case "$choice" in
     echo -e "\n${RED}${EMOJI_ERROR} Invalid input! Please run the script again and choose 0, 1, or 2.${RESET}"
     sleep 2
     echo -e "\n${RED}${EMOJI_ERROR}Backing${RESET}"
-    bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/installer.sh)
-    https://github.com/spookyMC123/skipt/edit/main/script/ptrodactyl/raw/refs/heads/main/install.sh
+    bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/ptrodactyl/install.sh)
     ;;
 esac
 
