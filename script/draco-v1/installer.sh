@@ -51,11 +51,11 @@ case $choice in
         ;;
     2)
         echo -e "${BRIGHT_GREEN}${EMOJI_CHECK} Installing Draco Panel v2...${RESET}"
-        bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/draco-v1/script/v1-installwe.sh)
+        bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/draco-v1/script/v2installwe.sh)
         ;;
     3)
         echo -e "${BRIGHT_GREEN}${EMOJI_CHECK} Installing Draco Panel v3...${RESET}"
-        bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/script/draco-v1/script/v3-installwe.sh)
+        bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/draco-v1/script/v3-installwe.sh)
         ;;
     4)
         echo -e "${BRIGHT_GREEN}${EMOJI_CHECK} Installing PRO Wings Daemon...${RESET}"
