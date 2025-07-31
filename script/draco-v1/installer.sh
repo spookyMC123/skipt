@@ -47,11 +47,11 @@ read -r choice
 case $choice in
     1)
         echo -e "${BRIGHT_GREEN}${EMOJI_CHECK} Installing Draco Panel v1...${RESET}"
-        bash <(curl -fsSL https://raw.githubusercontent.com/spookyMC123/panel-installer/refs/heads/main/script/draco-v1/script/v1-installwe.sh)
+        bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/draco-v1/script/v1-installwe.sh)
         ;;
     2)
         echo -e "${BRIGHT_GREEN}${EMOJI_CHECK} Installing Draco Panel v2...${RESET}"
-        bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/script/draco-v1/script/v2installwe.sh)
+        bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/draco-v1/script/v1-installwe.sh)
         ;;
     3)
         echo -e "${BRIGHT_GREEN}${EMOJI_CHECK} Installing Draco Panel v3...${RESET}"
