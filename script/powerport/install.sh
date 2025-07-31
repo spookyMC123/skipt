@@ -1,23 +1,59 @@
 #!/bin/bash
 
-echo "🚀 Installing Powerport Panel..."
+# Define colors
+GREEN="\e[32m"
+YELLOW="\e[33m"
+CYAN="\e[36m"
+RED="\e[31m"
+RESET="\e[0m"
+BOLD="\e[1m"
 
-# Install dependencies
-sudo apt update
-sudo apt install -y curl software-properties-common git
+# Emojis
+EMOJI_START="🚀"
+EMOJI_OK="✅"
+EMOJI_ERROR="❌"
+EMOJI_DOWNLOAD="📦"
+EMOJI_RUN="🧠"
+EMOJI_WEB="🌐"
 
-# Install Node.js
+# Clear the screen
+clear
+
+# Starting message
+echo -e "${CYAN}${BOLD}${EMOJI_START} Installing PowerPort Panel...${RESET}"
+
+# Update and install dependencies
+echo -e "${YELLOW}${EMOJI_DOWNLOAD} Updating system & installing packages...${RESET}"
+sudo apt update -y && sudo apt install -y curl software-properties-common git
+
+# Install Node.js v23
+echo -e "${YELLOW}${EMOJI_DOWNLOAD} Installing Node.js v23...${RESET}"
 curl -sL https://deb.nodesource.com/setup_23.x | sudo bash -
 sudo apt install -y nodejs
 
-# Clone and build the panel
-git clone https://github.com/PowerPort-Labs/panel.git
-cd panel
+# Clone repository
+echo -e "${YELLOW}${EMOJI_DOWNLOAD} Cloning PowerPort panel repository...${RESET}"
+if git clone https://github.com/PowerPort-Labs/panel.git; then
+  cd panel || { echo -e "${RED}${EMOJI_ERROR} Failed to enter 'panel' directory.${RESET}"; exit 1; }
+else
+  echo -e "${RED}${EMOJI_ERROR} Failed to clone repository.${RESET}"
+  exit 1
+fi
 
+# Install dependencies and build
+echo -e "${CYAN}${EMOJI_RUN} Installing dependencies...${RESET}"
 npm install
+
+echo -e "${CYAN}${EMOJI_RUN} Building user interface...${RESET}"
 npm run build:user
+
+echo -e "${CYAN}${EMOJI_RUN} Seeding database...${RESET}"
 npm run seed
+
+# Run the panel
+echo -e "${CYAN}${EMOJI_RUN} Starting PowerPort Panel...${RESET}"
 node .
 
-echo "✅ Installation complete!"
-echo "🌐 Access the panel at: http://localhost:3001"
+# Completion message
+echo -e "\n${GREEN}${EMOJI_OK} PowerPort Panel installation complete!${RESET}"
+echo -e "${GREEN}${EMOJI_WEB} Access it via: ${BOLD}http://localhost:3001${RESET}"
