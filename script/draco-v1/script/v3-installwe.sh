@@ -25,7 +25,7 @@ cd v3panel || { echo -e "${RED}Failed to enter v3panel directory!${RESET}"; exit
 sudo apt install -y zip unzip
 unzip panel.zip
 cd panel || { echo -e "${RED}Failed to enter panel directory!${RESET}"; exit 1; }
-
+sleep 4
 # Install dependencies and start
 echo -e "${CYAN}Installing dependencies and starting panel...${RESET}"
 npm install
