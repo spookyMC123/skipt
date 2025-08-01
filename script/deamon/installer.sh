@@ -52,7 +52,7 @@ case "$choice" in
     echo -e "${RED}${EMOJI_ERROR} Installation failed. Please check your network or try again.${RESET}"
     sleep 2
     echo -e "\n${RED}${EMOJI_ERROR}Backing${RESET}"
-    bash <(curl -fsSL https://raw.githubusercontent.com/Ininityforge/panel-Installer/refs/heads/main/Install.sh)
+    bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/deamon/installer.sh)
     }
     ;;
   2)
@@ -62,7 +62,7 @@ case "$choice" in
     echo -e "${RED}${EMOJI_ERROR} Installation failed. Please check your connection or script source.${RESET}"
     sleep 2
     echo -e "\n${RED}${EMOJI_ERROR}Backing${RESET}"
-    bash <(curl -fsSL https://raw.githubusercontent.com/Ininityforge/panel-Installer/refs/heads/main/Install.sh)
+    bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/deamon/installer.sh)
     }
     ;;
    3)
@@ -72,7 +72,7 @@ case "$choice" in
     echo -e "${RED}${EMOJI_ERROR} Installation failed. Please check your network or try again.${RESET}"
     sleep 2
     echo -e "\n${RED}${EMOJI_ERROR}Backing${RESET}"
-    bash <(curl -fsSL https://raw.githubusercontent.com/Ininityforge/panel-Installer/refs/heads/main/Install.sh)
+    bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/deamon/installer.sh)
     }
     ;;
    4)
@@ -82,7 +82,7 @@ case "$choice" in
     echo -e "${RED}${EMOJI_ERROR} Installation failed. Please check your network or try again.${RESET}"
     sleep 2
     echo -e "\n${RED}${EMOJI_ERROR}Backing${RESET}"
-    bash <(curl -fsSL https://raw.githubusercontent.com/Ininityforge/panel-Installer/refs/heads/main/Install.sh)
+    bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/deamon/installer.sh)
     }
     ;;
    5)
@@ -92,13 +92,13 @@ case "$choice" in
     echo -e "${RED}${EMOJI_ERROR} Installation failed. Please check your network or try again.${RESET}"
     sleep 2
     echo -e "\n${RED}${EMOJI_ERROR}Backing${RESET}"
-    bash <(curl -fsSL https://raw.githubusercontent.com/Ininityforge/panel-Installer/refs/heads/main/Install.sh)
+    bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/deamon/installer.sh)
     }
     ;;
   0)
     echo -e "\n${YELLOW}${EMOJI_BACK} Redirecting to Main Installer...${RESET}"
     sleep 1
-    bash <(curl -fsSL https://raw.githubusercontent.com/Ininityforge/panel-Installer/refs/heads/main/Install.sh)
+    bash <(curl -fsSL https://github.com/infinityForge-labs/panel-Installer/raw/refs/heads/main/Install.sh)
     ;;
   *)
     echo -e "\n${RED}${EMOJI_ERROR} Invalid input! Please run the script again and choose 0, 1, or 2.${RESET}"
