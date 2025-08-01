@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# Define colors
+#===============================================================
+# 🚀 Draco Panel v3 Installer - Powered by InfinityForge 🛡️
+# Author: spookyMC123 | https://github.com/dragonlabsdev
+#===============================================================
+
+# Define Colors & Formatting
 GREEN="\e[32m"
 YELLOW="\e[33m"
 CYAN="\e[36m"
@@ -16,56 +21,73 @@ EMOJI_ERROR="❌"
 EMOJI_NODE="🟩"
 EMOJI_GIT="🔧"
 EMOJI_RUN="🚀"
+EMOJI_ZIP="📦"
+EMOJI_DONE="🏁"
 
-# Clear screen
+# Function to handle fatal errors
+function error_exit {
+  echo -e "${RED}${EMOJI_ERROR} ${1}${RESET}"
+  exit 1
+}
+
+# Ensure running as root
+if [ "$EUID" -ne 0 ]; then
+  error_exit "Please run this installer as root or with sudo privileges."
+fi
+
+# Clear screen for a clean experience
 clear
 
-# Update apt
-echo -e "${CYAN}${EMOJI_INFO} Updating package list...${RESET}"
-sudo apt update -y
+# Header
+echo -e "${CYAN}${BOLD}"
+echo "╔═══════════════════════════════════════════════╗"
+echo "║      🚀 Draco Panel v3 - Automated Setup      ║"
+echo "║         Crafted by InfinityForge & Team       ║"
+echo "╚═══════════════════════════════════════════════╝"
+echo -e "${RESET}"
 
-# Install Node.js 20
-echo -e "${CYAN}${EMOJI_NODE} Installing Node.js 20...${RESET}"
-curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt-get install -y nodejs
+# Step 1: Update APT
+echo -e "${CYAN}${EMOJI_INFO} Updating package lists...${RESET}"
+apt update -y || error_exit "Failed to update APT repositories."
 
-# Clone the panel repository
-echo -e "${CYAN}${EMOJI_GIT} Cloning the v3 panel repository...${RESET}"
-if git clone https://github.com/dragonlabsdev/v3panel.git; then
-  cd v3panel || { echo -e "${RED}${EMOJI_ERROR} Failed to enter 'v3panel' directory.${RESET}"; exit 1; }
+# Step 2: Install Git, Curl, Zip, Unzip
+echo -e "${CYAN}${EMOJI_INFO} Installing dependencies (git, curl, zip)...${RESET}"
+apt install -y git curl zip unzip || error_exit "Dependency installation failed."
+
+# Step 3: Install Node.js LTS (v20)
+if ! command -v node &> /dev/null; then
+  echo -e "${CYAN}${EMOJI_NODE} Installing Node.js v20 LTS...${RESET}"
+  curl -fsSL https://deb.nodesource.com/setup_20.x | bash - || error_exit "Failed to fetch Node.js setup script."
+  apt install -y nodejs || error_exit "Node.js installation failed."
 else
-  echo -e "${RED}${EMOJI_ERROR} Git clone failed. Please check your internet or repo URL.${RESET}"
-  exit 1
+  echo -e "${GREEN}${EMOJI_OK} Node.js is already installed. Skipping...${RESET}"
 fi
 
-# Install zip/unzip
-echo -e "${CYAN}${EMOJI_INFO} Installing unzip tools...${RESET}"
-sudo apt install -y zip unzip
+# Step 4: Clone the repository
+echo -e "${CYAN}${EMOJI_GIT} Cloning Draco Panel repository...${RESET}"
+git clone https://github.com/dragonlabsdev/v3panel.git || error_exit "Git clone failed. Check your internet or repo URL."
+cd v3panel || error_exit "Failed to enter 'v3panel' directory."
 
-# Unzip panel.zip
-echo -e "${CYAN}${EMOJI_INFO} Extracting panel files...${RESET}"
-if unzip panel.zip >/dev/null 2>&1; then
-  cd panel || { echo -e "${RED}${EMOJI_ERROR} Failed to enter 'panel' directory.${RESET}"; exit 1; }
-else
-  echo -e "${RED}${EMOJI_ERROR} Failed to unzip panel.zip.${RESET}"
-  exit 1
-fi
+# Step 5: Extract panel.zip
+echo -e "${CYAN}${EMOJI_ZIP} Extracting panel files from panel.zip...${RESET}"
+unzip -q panel.zip || error_exit "Failed to unzip panel.zip."
+cd panel || error_exit "Failed to enter extracted 'panel' directory."
 
-sleep 2
+# Step 6: Install dependencies and configure
+echo -e "${CYAN}${EMOJI_INFO} Installing Node.js packages...${RESET}"
+npm install || error_exit "npm install failed."
 
-# Install dependencies and start panel
-echo -e "${CYAN}${EMOJI_INFO} Installing NPM dependencies...${RESET}"
-npm install
-
-echo -e "${CYAN}${EMOJI_INFO} Seeding database...${RESET}"
-npm run seed
+echo -e "${CYAN}${EMOJI_INFO} Running database seed...${RESET}"
+npm run seed || error_exit "npm run seed failed."
 
 echo -e "${CYAN}${EMOJI_INFO} Creating admin user...${RESET}"
-npm run createUser
+npm run createUser || error_exit "npm run createUser failed."
 
-echo -e "${CYAN}${EMOJI_RUN} Starting the panel...${RESET}"
-node .
+# Step 7: Start the Panel
+echo -e "${CYAN}${EMOJI_RUN} Starting Draco Panel...${RESET}"
+node . || error_exit "Failed to launch panel with node ."
 
-# Completion message
-echo -e "${GREEN}${EMOJI_OK} DracroPanel v3 installation complete!${RESET}"
-echo -e "${GREEN}${EMOJI_OK} The panel is now running on port ${BOLD}3000${RESET}${GREEN}!${RESET}"
+# ✅ Installation Complete
+echo -e "\n${GREEN}${BOLD}${EMOJI_OK} Draco Panel v3 installed successfully!${RESET}"
+echo -e "${GREEN}${EMOJI_DONE} The panel is now running at: http://<your-server-ip>:3000${RESET}"
+echo -e "${YELLOW}${EMOJI_WARN} Tip: For production, consider using PM2 or systemd for process management.${RESET}"
