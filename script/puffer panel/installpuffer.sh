@@ -36,11 +36,11 @@ read -r choice
 case $choice in
     1)
         echo -e "\n${GREEN}${EMOJI_CHECK} Installing GitHub PufferPanel...${RESET}"
-        bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/script/puffer%20panel/git-install.sh)
+        bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/puffer%20panel/git-install.sh)
         ;;
     2)
         echo -e "\n${GREEN}${EMOJI_CHECK} Installing VPS and Codesandbox PufferPanel...${RESET}"
-        bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/script/puffer%20panel/codesandboxvpspufferpanelinstall.sh)
+        bash <(curl -fsSL https://github.com/spookyMC123/skipt/raw/refs/heads/main/script/puffer%20panel/codesandboxvpspufferpanelinstall.sh)
         ;;
     0)
         echo -e "\n${GREEN}${EMOJI_BACK} Returning to main panel installer...${RESET}"
