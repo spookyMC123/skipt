@@ -65,7 +65,7 @@ case "$choice" in
   0)
     echo -e "\n${YELLOW}${EMOJI_BACK} Redirecting to Main Installer...${RESET}"
     sleep 1
-    bash <(curl -fsSL https://github.com/spookyMC123/panel-installer/raw/refs/heads/main/installer.sh)
+    bash <(curl -fsSL https://github.com/infinityForge-labs/panel-Installer/raw/refs/heads/main/Install.sh)
     ;;
   *)
     echo -e "\n${RED}${EMOJI_ERROR} Invalid input! Please run the script again and choose 0, 1, or 2.${RESET}"
