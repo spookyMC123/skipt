@@ -25,7 +25,7 @@ clear
 
 # Header
 echo -e "${CYAN}${BOLD}=========================================${RESET}"
-echo -e "${CYAN}${BOLD}    🚀 Installing gitPufferPanel         ${RESET}"
+echo -e "${CYAN}${BOLD}    ${EMOJI_RUN}installing PufferPanel gitInstaller    ${RESET}"
 echo -e "${CYAN}${BOLD}=========================================${RESET}"
 
 # Step 1: Install required tools
@@ -65,6 +65,13 @@ nohup sudo pufferpanel run > panel.log 2>&1 &
 # Final message
 echo -e "\n${GREEN}${EMOJI_DONE} PufferPanel installation completed!${RESET}"
 echo -e "${YELLOW}${EMOJI_WARN} Note: PufferPanel runs on port 8080.${RESET}"
-echo -e "${CYAN}Use an HTTP tunneling service like ${BOLD}ngrok, localhost.run, pinggy.io${RESET}${CYAN} to access the panel from Codespaces or remote environments.${RESET}"
-echo -e "\nTo restart panel manually, run:\n  ${BOLD}sudo pufferpanel run${RESET}\n"
 
+echo -e "${CYAN}Use an HTTP tunneling service like:"
+echo -e "  ${BOLD}ngrok${RESET}${CYAN}, localhost.run, or pinggy.io"
+echo -e "to access the panel from Codespaces or remote environments.${RESET}"
+
+echo -e "\nTo restart the panel manually, run:"
+echo -e "  ${BOLD}sudo pufferpanel run${RESET}"
+
+sleep 3
+echo -e "\n${GREEN}${EMOJI_OK} Installation Completed Successfully! Enjoy your panel. ${EMOJI_RUN}${RESET}"
